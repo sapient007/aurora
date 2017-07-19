@@ -26,7 +26,6 @@
 - name: Install NVM
   git:
     repo: https://github.com/creationix/nvm.git
-    version: v0.33.2
     dest: "{{ nvm_install_path }}"
   tags:
     - nodejs
