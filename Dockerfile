@@ -6,7 +6,7 @@ RUN yum -y install git ansible sudo wget openssh-server python-pip
 RUN yum -y install acl
 RUN yum clean all
 
-RUN pip install --upgrade jinja2
+RUN pip install jinja2
 # Disable requiretty
 RUN sed -i -e 's/^\(Defaults\s*requiretty\)/#--- \1/'  /etc/sudoers
 
