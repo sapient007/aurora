@@ -2,11 +2,10 @@ FROM centos:6
 
 # Install Ansible
 RUN yum -y install epel-release
-RUN yum -y install git ansible sudo wget openssh-server python-pip python-dev
+RUN yum -y install git ansible sudo wget openssh-server
 RUN yum -y install acl
 RUN yum clean all
 
-RUN pip install --upgrade jinja2
 # Disable requiretty
 RUN sed -i -e 's/^\(Defaults\s*requiretty\)/#--- \1/'  /etc/sudoers
 
