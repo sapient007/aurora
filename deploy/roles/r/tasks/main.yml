@@ -25,9 +25,7 @@
 
 - name: Restart rstudio if R updates and rstudio server is installed
   command: /bin/true
-  # when: (rstudio_installed is defined and rstudio_installed.results|length > 0 and rstudio_installed.results|selectattr('yumstate', 'equalto', 'installed'))
-  #when: (rstudio_installed is defined and rstudio_installed.results|length > 0 and {% if any([r for r in rstudio_installed.results if r['yumstate'] == 'installed']) %})
-  when: (rstudio_installed is defined and rstudio_installed.results|length > 0 and any([r for r in rstudio_installed.results]))
+  when: (rstudio_installed is defined and rstudio_installed.results|length > 0 and "installed" in rstudio_installed.results|oo_collect(attribute="yumstate")|list)
   notify: restart rstudio-server
   tags:
     - r
