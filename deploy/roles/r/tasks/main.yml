@@ -18,7 +18,7 @@
 - name: Check if rstudio server is installed
   yum:
     list: rstudio-server
-  when: r_core_updated.changed
+  #when: r_core_updated.changed
   register: rstudio_installed
   tags:
     - r
@@ -26,7 +26,7 @@
 - name: Restart rstudio if R updates and rstudio server is installed
   command: /bin/true
   # when: (rstudio_installed is defined and rstudio_installed.results|length > 0 and rstudio_installed.results|selectattr('yumstate', 'equalto', 'installed'))
-  when: (rstudio_installed is defined and rstudio_installed.results|length > 0 and rstudio_installed|json_query('results[*].yumstate')|search("installed"))
+  when: (rstudio_installed is defined and rstudio_installed.results|length > 0 and "installed" in rstudio_installed|json_query('results[*].yumstate'))
   notify: restart rstudio-server
   tags:
     - r
