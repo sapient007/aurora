@@ -163,7 +163,6 @@ before_install:
   - sudo apt-get update
   # Pull container
   - docker pull centos:6
-  - pip install --upgrade ansible
   # Customize container
   - docker build --rm=true --file=Dockerfile --tag=centos:ansible . #replace with variable later
 
