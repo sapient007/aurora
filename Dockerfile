@@ -3,10 +3,11 @@ FROM centos:6
 # Install Ansible
 RUN yum -y install epel-release
 RUN yum update
-RUN yum -y install git sudo wget openssh-server
+RUN yum -y install git sudo wget openssh-server python-pip
 RUN yum -y install acl
 RUN yum clean all
 
+RUN pip install --ignore-installed --upgrade ansible
 # Disable requiretty
 RUN sed -i -e 's/^\(Defaults\s*requiretty\)/#--- \1/'  /etc/sudoers
 
