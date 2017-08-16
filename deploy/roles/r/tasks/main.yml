@@ -18,7 +18,7 @@
 - name: Check if rstudio server is installed
   yum:
     list: rstudio-server
-  #when: r_core_updated.changed
+  when: r_core_updated.changed
   register: rstudio_installed
   tags:
     - r
